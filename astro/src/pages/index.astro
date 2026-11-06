@@ -1,0 +1,201 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.hero {
+				padding: 3rem 0 1.5rem;
+			}
+			.hero-panel {
+				display: block;
+				position: relative;
+				overflow: hidden;
+				background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(17, 24, 39, 0.9));
+				border: 1px solid rgba(124, 199, 255, 0.16);
+				border-radius: 28px;
+				box-shadow: 0 20px 40px rgba(2, 6, 23, 0.36);
+				padding: clamp(1.5rem, 3vw, 3rem);
+			}
+			.hero-panel::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 12rem;
+				height: 12rem;
+				background: radial-gradient(circle, rgba(124, 199, 255, 0.22), transparent 70%);
+				pointer-events: none;
+			}
+			.hero-copy {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+			}
+			.eyebrow {
+				margin: 0 0 1rem;
+				font-size: 0.8rem;
+				font-weight: 700;
+				letter-spacing: 0.12em;
+				text-transform: uppercase;
+				color: rgb(var(--gray));
+			}
+			.hero h1 {
+				margin-bottom: 1rem;
+				font-size: clamp(2.8rem, 6vw, 5rem);
+				line-height: 0.95;
+			}
+			.hero h1 .highlight {
+				color: var(--accent);
+			}
+			.lede {
+				width: 100%;
+				max-width: none;
+				font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+				line-height: 1.7;
+				margin: 0;
+			}
+			.hero-actions {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.9rem;
+				margin-top: 1.75rem;
+			}
+			.section {
+				margin-top: 3.5rem;
+				padding-top: 1.5rem;
+				padding-bottom: 1.25rem;
+				border-top: 1px solid rgba(148, 163, 184, 0.12);
+			}
+			.section-heading {
+				margin-bottom: 1.25rem;
+				padding-bottom: 0.35rem;
+				border-bottom: 1px solid rgba(124, 199, 255, 0.2);
+				display: inline-block;
+			}
+			.focus-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1.25rem;
+				margin-top: 1rem;
+			}
+			.focus-card {
+				padding: 1.5rem;
+				border: 1px solid var(--panel-border);
+				border-radius: 18px;
+				background: var(--panel);
+				box-shadow: 0 10px 30px rgba(15, 18, 25, 0.18);
+				display: flex;
+				flex-direction: column;
+			}
+			.focus-card h3 {
+				font-size: 1.15rem;
+				margin-bottom: 0.6rem;
+				color: var(--accent);
+			}
+			.focus-card p {
+				margin: 0;
+				font-size: 0.92rem;
+				line-height: 1.6;
+				color: rgb(var(--gray-dark));
+			}
+			.button-link {
+				display: inline-block;
+				padding: 0.75rem 1.25rem;
+				border-radius: 999px;
+				background: linear-gradient(135deg, var(--accent), #9ad6ff);
+				color: #06131f;
+				text-decoration: none;
+				font-weight: 700;
+				letter-spacing: 0.01em;
+				transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+				box-shadow: 0 12px 24px rgba(124, 199, 255, 0.18);
+			}
+			.button-link:hover {
+				transform: translateY(-1px);
+				filter: brightness(1.04);
+				box-shadow: 0 16px 28px rgba(124, 199, 255, 0.22);
+			}
+			.button-link.secondary {
+				background: transparent;
+				color: var(--accent);
+				border: 1px solid rgba(124, 199, 255, 0.4);
+				box-shadow: none;
+			}
+			.button-link.secondary:hover {
+				background: rgba(124, 199, 255, 0.08);
+			}
+			@media (max-width: 768px) {
+				.focus-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+			@media (max-width: 720px) {
+				.section {
+					margin-top: 2.75rem;
+					padding-top: 1rem;
+				}
+				.hero {
+					padding-top: 2.25rem;
+				}
+				.hero-panel {
+					padding: 1.25rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<div class="hero-panel">
+					<div class="hero-copy">
+						<p class="eyebrow">Software Engineer @ Qualtrics</p>
+						<h1>Charles Kwanin</h1>
+						<p class="lede">
+							Backend and infrastructure engineer at Qualtrics building scalable services and cloud platforms across
+							commercial and FedRAMP environments. Previously at Goldman Sachs.
+						</p>
+						<div class="hero-actions">
+							<a class="button-link" href="/about">View Experience & Resume &rarr;</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="focus" class="section">
+				<h2 class="section-heading">Technical Focus</h2>
+				<div class="focus-grid">
+					<div class="focus-card">
+						<h3>High-Throughput Systems</h3>
+						<p>
+							High-availability APIs, ingress routing, rate limiting, and bot defense architectures built for scale.
+						</p>
+					</div>
+					<div class="focus-card">
+						<h3>Cloud & Platform Engineering</h3>
+						<p>
+							Enterprise Kubernetes migrations across commercial and GovCloud datacenters, GitOps CI/CD, and infrastructure cost optimization.
+						</p>
+					</div>
+					<div class="focus-card">
+						<h3>Data & Event Architecture</h3>
+						<p>
+							Resilient event-streaming pipelines with Kafka and Redis, paired with schema and datastore modeling for high-availability systems.
+						</p>
+					</div>
+				</div>
+				<div style="margin-top: 1.75rem;">
+					<a class="button-link secondary" href="/about">Explore full career history & resume &rarr;</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
